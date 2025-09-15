@@ -23,8 +23,8 @@ def validate_user_data(data):
     if 'age' in data and data['age'] is not None:
         try:
             age = int(data['age'])
-            if age < 1 or age > 150:
-                errors.append('年龄必须在1-150之间')
+            if age < 1 or age > 120:
+                errors.append('年龄必须在1-120之间')
         except (ValueError, TypeError):
             errors.append('年龄必须是有效的数字')
     

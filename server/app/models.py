@@ -10,12 +10,12 @@ class User(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String(20), unique=True, nullable=False)
     age = Column(Integer, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.now)
     
     def to_dict(self):
         return {
             'id': self.id,
             'username': self.username,
             'age': self.age,
-            'created_at': self.created_at.isoformat() if self.created_at else None
+            'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S') if self.created_at else None
         }
