@@ -41,9 +41,19 @@ UserRegister/
 
 ## 环境要求
 
-- Node.js 16+
-- Python 3.9-3.11（建议版本，系统需预先安装）
-- npm 或 yarn
+### 操作系统
+- Windows 10/11
+- macOS 10.15+
+- Linux (Ubuntu 18.04+, CentOS 7+, 或其他主流发行版)
+
+### 软件依赖
+- **Node.js 16+**
+  - 官方下载地址：https://nodejs.org/
+  - 建议安装 LTS 版本
+- **Python 3.9-3.11**（建议版本，系统需预先安装）
+  - 官方下载地址：https://www.python.org/downloads/
+  - 注意：Python 3.12+ 存在兼容性问题，建议使用 3.9-3.11 版本
+- **npm 或 yarn**（随 Node.js 自动安装）
 
 ## 安装步骤
 
@@ -86,6 +96,8 @@ cp .env.example .env
 ```
 
 **注意**: 环境变量文件为可选配置，项目使用默认配置即可正常运行。
+
+```bash
 pip install -r requirements.txt
 ```
 
