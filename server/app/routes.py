@@ -12,6 +12,7 @@ def health_check():
 
 @api.route('/users', methods=['POST'])
 def create_user():
+    db = None
     try:
         data = request.get_json()
         
@@ -37,16 +38,20 @@ def create_user():
         }), 201
         
     except IntegrityError:
-        db.rollback()
+        if db:
+            db.rollback()
         return jsonify({'error': '用户名已存在'}), 409
     except Exception as e:
-        db.rollback()
+        if db:
+            db.rollback()
         return jsonify({'error': '服务器内部错误'}), 500
     finally:
-        db.close()
+        if db:
+            db.close()
 
 @api.route('/users', methods=['GET'])
 def get_users():
+    db = None
     try:
         db = next(get_db())
         
@@ -77,10 +82,12 @@ def get_users():
     except Exception as e:
         return jsonify({'error': '服务器内部错误'}), 500
     finally:
-        db.close()
+        if db:
+            db.close()
 
 @api.route('/users/<int:user_id>', methods=['GET'])
 def get_user(user_id):
+    db = None
     try:
         db = next(get_db())
         user = db.query(User).filter(User.id == user_id).first()
@@ -93,4 +100,5 @@ def get_user(user_id):
     except Exception as e:
         return jsonify({'error': '服务器内部错误'}), 500
     finally:
-        db.close()
+        if db:
+            db.close()
